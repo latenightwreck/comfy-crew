@@ -11,8 +11,10 @@ import {
   MatIconModule,
   MatCardModule,
   MatButtonModule,
+  MatListModule,
   MatToolbarModule,
   MatExpansionModule,
+  MatSidenavModule,
   MatProgressSpinnerModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,9 +26,11 @@ import { AppRoutingModule } from './app-routing';
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
+    MatListModule,
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
+    MatSidenavModule,
     XivapiClientModule.forRoot('cd1e255e760b445799d4a581'),
     BrowserAnimationsModule
   ],
