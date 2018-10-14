@@ -19,9 +19,10 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SearchBarComponent],
+  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

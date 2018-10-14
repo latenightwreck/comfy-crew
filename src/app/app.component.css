@@ -3,3 +3,8 @@ mat-sidenav-content {
   width: 80%;
   margin: 1rem auto;
 }
+
+
+.app-container {
+  min-height: 100%;
+}
