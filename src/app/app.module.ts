@@ -22,9 +22,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CharacterComponent } from './character/character.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent],
+  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent, CharacterComponent],
   imports: [
     BrowserModule,
     FormsModule,
