@@ -16,6 +16,7 @@
         ></mat-option>
         <ng-container *ngIf="!isLoading">
           <mat-option *ngFor="let user of _response" [value]="user">
+            <img [src]="user.Avatar" class="character">
             <div>{{ user.Name }}</div>
           </mat-option>
         </ng-container>
