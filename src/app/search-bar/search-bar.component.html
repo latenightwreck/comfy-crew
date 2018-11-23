@@ -15,7 +15,7 @@
           ><mat-spinner diameter="50"></mat-spinner
         ></mat-option>
         <ng-container *ngIf="!isLoading">
-          <mat-option *ngFor="let user of _response" [value]="user.ID">
+          <mat-option *ngFor="let user of response" [value]="user.ID">
             <div>{{ user.Name }}</div>
           </mat-option>
         </ng-container>
