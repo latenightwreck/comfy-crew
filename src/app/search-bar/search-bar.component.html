@@ -10,13 +10,12 @@
         formControlName="characterSearchInput"
         [matAutocomplete]="auto"
       />
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChanged($event)">
         <mat-option *ngIf="isLoading" class="is-loading"
           ><mat-spinner diameter="50"></mat-spinner
         ></mat-option>
         <ng-container *ngIf="!isLoading">
-          <mat-option *ngFor="let user of _response" [value]="user">
-            <img [src]="user.Avatar" class="character">
+          <mat-option *ngFor="let user of response" [value]="user.ID">
             <div>{{ user.Name }}</div>
           </mat-option>
         </ng-container>

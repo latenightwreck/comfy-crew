@@ -2,7 +2,9 @@ mat-form-field {
   width: 100%;
 }
 
-img.character {
-  height: 48px;
-  border-radius: 48px;
+
+mat-card {
+  margin-top: 1rem;
+  width: 80%;
+  margin: 1rem auto;
 }

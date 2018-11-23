@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { XivapiService, CharacterSearchResultRow } from '@xivapi/angular-client';
+import { CharacterSearchResultRow } from '@xivapi/angular-client';
 import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { CharacterService } from '../character/character.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'comfy-search-bar',
@@ -11,13 +14,15 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class SearchBarComponent implements OnInit {
 
   characterSearchForm: FormGroup;
-  public _response: CharacterSearchResultRow[] = [];
+  public response: CharacterSearchResultRow[] = [];
   isLoading = false;
 
-  constructor(private fb: FormBuilder, private xivapi: XivapiService) {}
+  constructor(fb: FormBuilder,
+    characterService: CharacterService,
+    private router: Router
+    ) {
 
-  ngOnInit() {
-    this.characterSearchForm = this.fb.group({
+    this.characterSearchForm = fb.group({
       characterSearchInput: null
     });
 
@@ -25,12 +30,19 @@ export class SearchBarComponent implements OnInit {
       .pipe(
         debounceTime(300),
         tap(() => this.isLoading = true),
-        switchMap(value => this.xivapi.searchCharacter(value, 'sargatanas')
+        switchMap(value => characterService.searchCharacters(value)
           .pipe(
             finalize(() => this.isLoading = false)
           )
         )
       )
-      .subscribe(characters => this._response = characters.Results);
+      .subscribe(characters => this.response = characters.Results);
+    }
+
+  ngOnInit() {
+  }
+
+  onSelectionChanged(event: MatAutocompleteSelectedEvent) {
+    this.router.navigate(['character', event.option.value]);
   }
 }
