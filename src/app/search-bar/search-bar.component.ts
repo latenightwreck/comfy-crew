@@ -41,6 +41,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent) {
-    this.router.navigate(['character', event.option.value], );
+    this.router.navigate(['character', event.option.value]);
   }
 }

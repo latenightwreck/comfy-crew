@@ -12,7 +12,14 @@ export class CharacterService {
     return this.xivapi.searchCharacter(value, 'sargatanas');
   }
 
-  getCharacters(id: number): Observable<CharacterResponse> {
-    return this.xivapi.getCharacter(id);
+  getCharacter(id: number): Observable<CharacterResponse> {
+    const options = { columns: [
+      'Character.ClassJobs',
+      'Character.ID',
+      'Character.FreeCompanyId',
+      'Character.Portrait'
+    ],
+  extended: 1};
+    return this.xivapi.getCharacter(id, options);
   }
 }
