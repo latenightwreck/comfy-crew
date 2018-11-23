@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { XivapiService, CharacterSearchResultRow } from '@xivapi/angular-client';
+import { CharacterSearchResultRow } from '@xivapi/angular-client';
 import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { CharacterService } from '../character/character.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'comfy-search-bar',
@@ -14,7 +17,10 @@ export class SearchBarComponent implements OnInit {
   public _response: CharacterSearchResultRow[] = [];
   isLoading = false;
 
-  constructor(private fb: FormBuilder, private xivapi: XivapiService) {}
+  constructor(private fb: FormBuilder,
+    private characterService: CharacterService,
+    private router: Router
+    ) {}
 
   ngOnInit() {
     this.characterSearchForm = this.fb.group({
@@ -25,12 +31,16 @@ export class SearchBarComponent implements OnInit {
       .pipe(
         debounceTime(300),
         tap(() => this.isLoading = true),
-        switchMap(value => this.xivapi.searchCharacter(value, 'sargatanas')
+      switchMap(value => this.characterService.searchCharacters(value)
           .pipe(
             finalize(() => this.isLoading = false)
           )
         )
       )
       .subscribe(characters => this._response = characters.Results);
+  }
+
+  onSelectionChanged(event: MatAutocompleteSelectedEvent) {
+    this.router.navigate(['character', event.option.value], );
   }
 }
