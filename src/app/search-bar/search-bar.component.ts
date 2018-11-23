@@ -14,16 +14,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchBarComponent implements OnInit {
 
   characterSearchForm: FormGroup;
-  public _response: CharacterSearchResultRow[] = [];
+  public response: CharacterSearchResultRow[] = [];
   isLoading = false;
 
-  constructor(private fb: FormBuilder,
-    private characterService: CharacterService,
+  constructor(fb: FormBuilder,
+    characterService: CharacterService,
     private router: Router
-    ) {}
+    ) {
 
-  ngOnInit() {
-    this.characterSearchForm = this.fb.group({
+    this.characterSearchForm = fb.group({
       characterSearchInput: null
     });
 
@@ -31,13 +30,16 @@ export class SearchBarComponent implements OnInit {
       .pipe(
         debounceTime(300),
         tap(() => this.isLoading = true),
-      switchMap(value => this.characterService.searchCharacters(value)
+        switchMap(value => characterService.searchCharacters(value)
           .pipe(
             finalize(() => this.isLoading = false)
           )
         )
       )
-      .subscribe(characters => this._response = characters.Results);
+      .subscribe(characters => this.response = characters.Results);
+    }
+
+  ngOnInit() {
   }
 
   onSelectionChanged(event: MatAutocompleteSelectedEvent) {
