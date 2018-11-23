@@ -1,12 +1,25 @@
 <mat-card>
-<mat-form-field appearance="outline" color="accent">
-  <mat-label>Character Search</mat-label>
-  <mat-icon matPrefix>
-    search
-  </mat-icon>
-  <input
-  matInput
-  type="text"
-  placeholder="Character Search">
-</mat-form-field>
+  <form [formGroup]="characterSearchForm">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Character Search</mat-label>
+      <mat-icon matPrefix> search </mat-icon>
+      <input
+        matInput
+        type="text"
+        placeholder="Character Search"
+        formControlName="characterSearchInput"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngIf="isLoading" class="is-loading"
+          ><mat-spinner diameter="50"></mat-spinner
+        ></mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let user of _response" [value]="user">
+            <div>{{ user.Name }}</div>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
 </mat-card>

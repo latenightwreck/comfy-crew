@@ -15,16 +15,20 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatSidenavModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatInputModule,
     MatListModule,
@@ -32,6 +36,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
     XivapiClientModule.forRoot('cd1e255e760b445799d4a581'),
     BrowserAnimationsModule
   ],
