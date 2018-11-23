@@ -1,1 +1,9 @@
-<img [src]="character.Character.Portrait">
+<div *ngIf="_character | async as character; else loading">
+  <img
+    [src]="character.Character.Portrait"
+    style="max-height: 300px"
+  >
+</div>
+<ng-template #loading>
+  <mat-spinner diameter="50"></mat-spinner>Loading character data...
+</ng-template>

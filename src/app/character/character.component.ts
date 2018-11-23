@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CharacterService } from './character.service';
 import { CharacterResponse } from '@xivapi/angular-client';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'comfy-character',
@@ -10,18 +12,18 @@ import { CharacterResponse } from '@xivapi/angular-client';
 })
 export class CharacterComponent implements OnInit {
 
-  character: CharacterResponse;
+  _character: Observable<CharacterResponse>;
 
-  constructor(private route: ActivatedRoute, private characterService: CharacterService) { }
+  constructor(private route: ActivatedRoute,
+    private characterService: CharacterService) {
+
+      this._character = this.route.paramMap.pipe(
+        map(params => +params.get('id')),
+        switchMap(id => this.characterService.getCharacter(id))
+      );
+    }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.characterService.getCharacter(+params['id'])
-            .subscribe(characterData => this.character = characterData);
-        }
-      );
   }
 
 }
