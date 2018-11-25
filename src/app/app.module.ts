@@ -16,7 +16,9 @@ import {
   MatExpansionModule,
   MatSidenavModule,
   MatProgressSpinnerModule,
-  MatAutocompleteModule
+  MatProgressBarModule,
+  MatAutocompleteModule,
+  MatGridListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing';
@@ -38,7 +40,9 @@ import { CharacterComponent } from './character/character.component';
     MatToolbarModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatAutocompleteModule,
+    MatGridListModule,
     XivapiClientModule.forRoot('cd1e255e760b445799d4a581'),
     BrowserAnimationsModule
   ],

@@ -10,7 +10,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $candy-app-primary: mat-palette($mat-green, A200);
-$candy-app-accent:  mat-palette($mat-purple, A200, A100, A400);
+$candy-app-accent:  mat-palette($mat-purple, A200, 100, A400);
 
 // The warn palette is optional (defaults to red).
 $candy-app-warn:    mat-palette($mat-red);
