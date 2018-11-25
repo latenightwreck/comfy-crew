@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CharacterService } from './character.service';
 import { Observable } from 'rxjs';
 import { map, switchMap, shareReplay } from 'rxjs/operators';
+import { ClassJobData } from './class-job/class-job-data.model';
 
 @Component({
   selector: 'comfy-character',
@@ -11,13 +12,18 @@ import { map, switchMap, shareReplay } from 'rxjs/operators';
   styleUrls: ['./character.component.css']
 })
 export class CharacterComponent implements OnInit {
-  _character: Observable<Character>;
+  JOB_ID = {
+    tanks: [1, 3, 32]
+  };
+
+  character$: Observable<Character>;
+  tankClassJobs: Observable<ClassJobData[]>;
 
   constructor(
     private route: ActivatedRoute,
     private characterService: CharacterService
   ) {
-    this._character = this.route.paramMap.pipe(
+    this.character$ = this.route.paramMap.pipe(
       map(params => +params.get('id')),
       switchMap(id =>
         this.characterService.getCharacter(id).pipe(
@@ -26,10 +32,13 @@ export class CharacterComponent implements OnInit {
       )
     );
 
-    this._character.pipe(
+    this.tankClassJobs = this.character$.pipe(
       map(character => {
-        // make ClassJobs object separated the way i want
-        return character.classJobs;
+         return character.classJobs.filter(classJob => {
+          if (this.JOB_ID.tanks.includes(classJob.classId)) {
+            return classJob;
+          }
+        });
       })
     );
   }

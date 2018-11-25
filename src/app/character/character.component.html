@@ -1,4 +1,4 @@
-<div *ngIf="_character | async as character; else loading">
+<div *ngIf="character$ | async as character; else loading">
   <mat-grid-list cols="2" rowHeight="1:2">
     <mat-grid-tile>
       <mat-card>
@@ -10,10 +10,10 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-list style="width: 100%;">
-        <mat-list-item *ngFor="let classJob of character.tankJobs">
-          <p matLine>{{ classJob.JobID }} -- {{ classJob.Level }}</p>
+        <mat-list-item *ngFor="let classJob of tankClassJobs | async">
+          <p matLine>{{ classJob.jobId }} -- {{ classJob.level }}</p>
           <mat-progress-bar
-            [value]="(classJob.ExpLevel/classJob.ExpLevelMax)*100"
+            [value]="(classJob.expLevel/classJob.expLevelMax)*100"
             color="accent"
             matLine>
         </mat-progress-bar>

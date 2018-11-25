@@ -1,21 +1,18 @@
 import { CharacterResponse, ClassJob } from '@xivapi/angular-client';
+import { ClassJobData } from './class-job/class-job-data.model';
 export class Character {
 
-  static JOB_ID = {
-    tanks: [1, 3, 32]
-  };
-
   public portrait: string;
-  public classJobs: ClassJob[];
-
+  public classJobs: ClassJobData[];
 
   constructor(charResponse: CharacterResponse) {
     this.portrait = charResponse.Character.Portrait;
 
     const classJobIds = Object.keys(charResponse.Character.ClassJobs);
-    const classJobs: ClassJob[] = [];
+    const classJobs: ClassJobData[] = [];
     for (const classId of classJobIds) {
-      classJobs.push(charResponse.Character.ClassJobs[classId]);
+      const classJobData = new ClassJobData(charResponse.Character.ClassJobs[classId]);
+      classJobs.push(classJobData);
     }
     this.classJobs = classJobs;
   }
