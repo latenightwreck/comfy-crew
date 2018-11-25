@@ -1,8 +1,27 @@
 <div *ngIf="_character | async as character; else loading">
-  <img
-    [src]="character.Character.Portrait"
-    style="max-height: 300px"
-  >
+  <mat-grid-list cols="2" rowHeight="1:2">
+    <mat-grid-tile>
+      <mat-card>
+        <img
+          [src]="character.portrait"
+          style="max-height: 300px"
+        >
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-list style="width: 100%;">
+        <mat-list-item *ngFor="let classJob of character.tankJobs">
+          <p matLine>{{ classJob.JobID }} -- {{ classJob.Level }}</p>
+          <mat-progress-bar
+            [value]="(classJob.ExpLevel/classJob.ExpLevelMax)*100"
+            color="accent"
+            matLine>
+        </mat-progress-bar>
+          <comfy-class-job></comfy-class-job>
+        </mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
 <ng-template #loading>
   <mat-spinner diameter="50"></mat-spinner>Loading character data...

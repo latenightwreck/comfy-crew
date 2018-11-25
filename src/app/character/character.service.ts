@@ -1,5 +1,7 @@
+import { map } from 'rxjs/operators';
+import { Character } from './character.model';
 import { Injectable } from '@angular/core';
-import { XivapiService, CharacterSearchResult, CharacterResponse } from '@xivapi/angular-client';
+import { XivapiService, CharacterSearchResult } from '@xivapi/angular-client';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,14 +14,15 @@ export class CharacterService {
     return this.xivapi.searchCharacter(value, 'sargatanas');
   }
 
-  getCharacter(id: number): Observable<CharacterResponse> {
+  getCharacter(id: number): Observable<Character> {
     const options = { columns: [
       'Character.ClassJobs',
-      'Character.ID',
-      'Character.FreeCompanyId',
       'Character.Portrait'
-    ],
-  extended: 1};
-    return this.xivapi.getCharacter(id, options);
+    ]};
+    return this.xivapi.getCharacter(id, options).pipe(
+      map(charResponse => {
+        return new Character(charResponse);
+      })
+    );
   }
 }
