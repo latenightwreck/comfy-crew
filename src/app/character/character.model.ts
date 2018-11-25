@@ -7,7 +7,6 @@ export class Character {
 
   public portrait: string;
   public classJobs: ClassJob[];
-  public tankJobs: ClassJob[];
 
 
   constructor(charResponse: CharacterResponse) {
@@ -19,8 +18,5 @@ export class Character {
       classJobs.push(charResponse.Character.ClassJobs[classId]);
     }
     this.classJobs = classJobs;
-
-    this.tankJobs = classJobs.filter(job => Character.JOB_ID.tanks.includes(job.ClassID))
-      .sort((a, b) =>  a.ClassID - b.ClassID);
   }
 }

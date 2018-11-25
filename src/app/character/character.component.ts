@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CharacterService } from './character.service';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'comfy-character',
@@ -21,12 +21,16 @@ export class CharacterComponent implements OnInit {
       map(params => +params.get('id')),
       switchMap(id =>
         this.characterService.getCharacter(id).pipe(
-          map(characterData => {
-            // do the array mapping as component props
-            return characterData;
-          })
+          shareReplay(1)
         )
       )
+    );
+
+    this._character.pipe(
+      map(character => {
+        // make ClassJobs object separated the way i want
+        return character.classJobs;
+      })
     );
   }
 

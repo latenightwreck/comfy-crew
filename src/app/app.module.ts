@@ -25,9 +25,10 @@ import { AppRoutingModule } from './app-routing';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterComponent } from './character/character.component';
+import { ClassJobComponent } from './character/class-job/class-job.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent, CharacterComponent],
+  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent, CharacterComponent, ClassJobComponent],
   imports: [
     BrowserModule,
     FormsModule,
