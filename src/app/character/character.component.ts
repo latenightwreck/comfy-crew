@@ -13,11 +13,13 @@ import { ClassJobData } from './class-job/class-job-data.model';
 })
 export class CharacterComponent implements OnInit {
   JOB_ID = {
-    tanks: [1, 3, 32]
+    tanks: [1, 3, 32],
+    rangedPhys: [5, 31]
   };
 
   character$: Observable<Character>;
-  tankClassJobs: Observable<ClassJobData[]>;
+  tankClassJobs$: Observable<ClassJobData[]>;
+  rangedPhysClassJobs$: Observable<ClassJobData[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,16 +34,23 @@ export class CharacterComponent implements OnInit {
       )
     );
 
-    this.tankClassJobs = this.character$.pipe(
+    this.tankClassJobs$ = this.filterClassJobByType('tanks');
+    this.rangedPhysClassJobs$ = this.filterClassJobByType('rangedPhys');
+  }
+
+  ngOnInit() {}
+
+  filterClassJobByType(classType: string): Observable<ClassJobData[]> {
+    return this.character$.pipe(
       map(character => {
          return character.classJobs.filter(classJob => {
-          if (this.JOB_ID.tanks.includes(classJob.classId)) {
+          if (this.JOB_ID[classType].includes(classJob.classId)) {
             return classJob;
           }
+        }).sort((a, b) => {
+          return a.classId-b.classId;
         });
       })
     );
   }
-
-  ngOnInit() {}
 }
