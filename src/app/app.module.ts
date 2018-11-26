@@ -18,7 +18,8 @@ import {
   MatProgressSpinnerModule,
   MatProgressBarModule,
   MatAutocompleteModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDividerModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing';
@@ -44,6 +45,7 @@ import { ClassJobComponent } from './character/class-job/class-job.component';
     MatProgressBarModule,
     MatAutocompleteModule,
     MatGridListModule,
+    MatDividerModule,
     XivapiClientModule.forRoot('cd1e255e760b445799d4a581'),
     BrowserAnimationsModule
   ],
