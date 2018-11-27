@@ -13,12 +13,14 @@ import { ClassJobData } from './class-job/class-job-data.model';
 })
 export class CharacterComponent implements OnInit {
   JOB_ID = {
-    tanks: [1, 3, 32],
-    rangedPhys: [5, 31]
+    tanks: ['119', '321', '3232'],
+    healers: ['624', '2628', '3333'],
+    rangedPhys: ['523', '3131']
   };
 
   character$: Observable<Character>;
   tankClassJobs$: Observable<ClassJobData[]>;
+  healerClassJobs$: Observable<ClassJobData[]>;
   rangedPhysClassJobs$: Observable<ClassJobData[]>;
 
   constructor(
@@ -35,6 +37,7 @@ export class CharacterComponent implements OnInit {
     );
 
     this.tankClassJobs$ = this.filterClassJobByType('tanks');
+    this.healerClassJobs$ = this.filterClassJobByType('healers');
     this.rangedPhysClassJobs$ = this.filterClassJobByType('rangedPhys');
   }
 
@@ -44,11 +47,11 @@ export class CharacterComponent implements OnInit {
     return this.character$.pipe(
       map(character => {
          return character.classJobs.filter(classJob => {
-          if (this.JOB_ID[classType].includes(classJob.classId)) {
+          if (this.JOB_ID[classType].includes(classJob.classJobId)) {
             return classJob;
           }
         }).sort((a, b) => {
-          return a.classId-b.classId;
+          return a.classId - b.classId;
         });
       })
     );

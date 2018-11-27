@@ -2,6 +2,7 @@ import { ClassJob } from '@xivapi/angular-client';
 
 export class ClassJobData {
 
+  public classJobId: string;
   public classId: number;
   public jobId: number;
   public level: number;
@@ -13,6 +14,7 @@ export class ClassJobData {
   public jobName: string;
 
   constructor(apiClassJob: ClassJob) {
+    this.classJobId = '' + apiClassJob.ClassID + apiClassJob.JobID;
     this.classId = apiClassJob.ClassID;
     this.jobId = apiClassJob.JobID;
     this.level = apiClassJob.Level;

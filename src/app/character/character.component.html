@@ -1,27 +1,36 @@
 <div *ngIf="character$ | async as character; else loading">
-  <mat-grid-list cols="2" rowHeight="1:2">
-    <mat-grid-tile>
-      <mat-card>
-        <img
-          [src]="character.portrait"
-          style="max-height: 300px"
-        >
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-list style="width: 100%;">
-        <mat-list-item *ngFor="let classJob of tankClassJobs | async">
-          <p matLine>{{ classJob.jobId }} -- {{ classJob.level }}</p>
-          <mat-progress-bar
-            [value]="(classJob.expLevel/classJob.expLevelMax)*100"
-            color="accent"
-            matLine>
-        </mat-progress-bar>
-          <comfy-class-job></comfy-class-job>
-        </mat-list-item>
-      </mat-list>
-    </mat-grid-tile>
-  </mat-grid-list>
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <mat-card class="characterImg">
+      <img [src]="character.portrait"
+        style="max-height: 375px;">
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <mat-tab-group dynamicHeight>
+          <mat-tab label="One">
+            <mat-grid-list cols="2">
+              <mat-grid-tile>
+                <mat-list class="class-job-column">
+                  <comfy-class-job-list [classJobList$]="tankClassJobs$" [header]="'Tanks'"></comfy-class-job-list>
+                  <mat-divider mat-line></mat-divider>
+                  <comfy-class-job-list [classJobList$]="healerClassJobs$" [header]="'Healers'"></comfy-class-job-list>
+                </mat-list>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                  <comfy-class-job-list [classJobList$]="rangedPhysClassJobs$" [header]="'Ranged Phys'"></comfy-class-job-list>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-tab>
+          <mat-tab label="Two">
+            <h1>Some more tab content</h1>
+            <p>...</p>
+          </mat-tab>
+        </mat-tab-group>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
 </div>
 <ng-template #loading>
   <mat-spinner diameter="50"></mat-spinner>Loading character data...
