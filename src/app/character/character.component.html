@@ -8,23 +8,29 @@
   </mat-grid-tile>
   <mat-grid-tile>
       <mat-tab-group>
-          <mat-tab label="One">
-            <div class="class-job-data">
+          <mat-tab label="DoW/DoM">
+            <div>
               <mat-grid-list cols="2">
                 <mat-grid-tile>
-                  <mat-list class="class-job-column">
+                  <mat-list >
                     <comfy-class-job-list [classJobList$]="tankClassJobs$" [header]="'Tanks'"></comfy-class-job-list>
                     <mat-divider mat-line></mat-divider>
                     <comfy-class-job-list [classJobList$]="healerClassJobs$" [header]="'Healers'"></comfy-class-job-list>
                   </mat-list>
                 </mat-grid-tile>
                 <mat-grid-tile>
-                  <comfy-class-job-list [classJobList$]="rangedPhysClassJobs$" [header]="'Ranged Phys'"></comfy-class-job-list>
+                  <mat-list>
+                    <comfy-class-job-list [classJobList$]="meleeClassJobs$" [header]="'Melee'"></comfy-class-job-list>
+                    <mat-divider mat-line></mat-divider>
+                    <comfy-class-job-list [classJobList$]="physicalRangedClassJobs$" [header]="'Physical Ranged'"></comfy-class-job-list>
+                    <mat-divider mat-line></mat-divider>
+                    <comfy-class-job-list [classJobList$]="magicPhysClassJobs$" [header]="'Magical Ranged'"></comfy-class-job-list>
+                  </mat-list>
                 </mat-grid-tile>
               </mat-grid-list>
             </div>
           </mat-tab>
-          <mat-tab label="Two">
+          <mat-tab label="DoH/DoL">
             <h1>Some more tab content</h1>
             <p>...</p>
           </mat-tab>

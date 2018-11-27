@@ -1,7 +1,12 @@
 <h3 mat-subheader>{{ header }}</h3>
 <mat-list-item *ngFor="let classJob of (classJobList$ | async)">
-  <div style="display: flex; justify-content: flex-end" mat-line>
-    {{ classJob.expLevel }}/{{ classJob.expLevelMax }}
+  <div mat-line fxLayout="row" fxLayoutAlign="space-between">
+    <div>
+      {{ classJob.level }}
+    </div>
+    <div>
+      {{ classJob.expLevel }}/{{ classJob.expLevelMax }}
+    </div>
   </div>
   <mat-progress-bar
     mat-line

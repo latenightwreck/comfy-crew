@@ -15,13 +15,17 @@ export class CharacterComponent implements OnInit {
   JOB_ID = {
     tanks: ['119', '321', '3232'],
     healers: ['624', '2628', '3333'],
-    rangedPhys: ['523', '3131']
+    melee: ['2930', '220', '3434', '422'],
+    physicalRanged: ['523', '3131'],
+    magicRanged: ['3535', '2627', '725']
   };
 
   character$: Observable<Character>;
   tankClassJobs$: Observable<ClassJobData[]>;
   healerClassJobs$: Observable<ClassJobData[]>;
-  rangedPhysClassJobs$: Observable<ClassJobData[]>;
+  meleeClassJobs$: Observable<ClassJobData[]>;
+  physicalRangedClassJobs$: Observable<ClassJobData[]>;
+  magicPhysClassJobs$: Observable<ClassJobData[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,15 +34,15 @@ export class CharacterComponent implements OnInit {
     this.character$ = this.route.paramMap.pipe(
       map(params => +params.get('id')),
       switchMap(id =>
-        this.characterService.getCharacter(id).pipe(
-          shareReplay(1)
-        )
+        this.characterService.getCharacter(id).pipe(shareReplay(1))
       )
     );
 
     this.tankClassJobs$ = this.filterClassJobByType('tanks');
     this.healerClassJobs$ = this.filterClassJobByType('healers');
-    this.rangedPhysClassJobs$ = this.filterClassJobByType('rangedPhys');
+    this.meleeClassJobs$ = this.filterClassJobByType('melee');
+    this.physicalRangedClassJobs$ = this.filterClassJobByType('physicalRanged');
+    this.magicPhysClassJobs$ = this.filterClassJobByType('magicRanged');
   }
 
   ngOnInit() {}
@@ -46,13 +50,15 @@ export class CharacterComponent implements OnInit {
   filterClassJobByType(classType: string): Observable<ClassJobData[]> {
     return this.character$.pipe(
       map(character => {
-         return character.classJobs.filter(classJob => {
-          if (this.JOB_ID[classType].includes(classJob.classJobId)) {
-            return classJob;
-          }
-        }).sort((a, b) => {
-          return a.classId - b.classId;
-        });
+        return character.classJobs
+          .filter(classJob => {
+            if (this.JOB_ID[classType].includes(classJob.classJobId)) {
+              return classJob;
+            }
+          })
+          .sort((a, b) => {
+            return a.classId - b.classId;
+          });
       })
     );
   }

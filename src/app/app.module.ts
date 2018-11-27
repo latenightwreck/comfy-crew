@@ -22,6 +22,8 @@ import {
   MatDividerModule,
   MatTabsModule
 } from '@angular/material';
+
+import {FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -43,6 +45,7 @@ import { ClassJobListComponent } from './character/class-job-list/class-job-list
   imports: [
     BrowserModule,
     FormsModule,
+    FlexLayoutModule,
     ReactiveFormsModule,
     AppRoutingModule,
     MatInputModule,
