@@ -7,10 +7,18 @@ mat-tab-group {
   height: 100%;
 }
 
+mat-tab {
+  height: inherit;
+}
+
 mat-card.characterImg {
   margin-top: 1rem;
   width: auto;
   margin: 1rem auto;
+}
+
+.class-job-data {
+  height: 100;
 }
 
 mat-list.class-job-column {

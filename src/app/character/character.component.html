@@ -7,20 +7,22 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-      <mat-tab-group dynamicHeight>
+      <mat-tab-group>
           <mat-tab label="One">
-            <mat-grid-list cols="2">
-              <mat-grid-tile>
-                <mat-list class="class-job-column">
-                  <comfy-class-job-list [classJobList$]="tankClassJobs$" [header]="'Tanks'"></comfy-class-job-list>
-                  <mat-divider mat-line></mat-divider>
-                  <comfy-class-job-list [classJobList$]="healerClassJobs$" [header]="'Healers'"></comfy-class-job-list>
-                </mat-list>
-              </mat-grid-tile>
-              <mat-grid-tile>
+            <div class="class-job-data">
+              <mat-grid-list cols="2">
+                <mat-grid-tile>
+                  <mat-list class="class-job-column">
+                    <comfy-class-job-list [classJobList$]="tankClassJobs$" [header]="'Tanks'"></comfy-class-job-list>
+                    <mat-divider mat-line></mat-divider>
+                    <comfy-class-job-list [classJobList$]="healerClassJobs$" [header]="'Healers'"></comfy-class-job-list>
+                  </mat-list>
+                </mat-grid-tile>
+                <mat-grid-tile>
                   <comfy-class-job-list [classJobList$]="rangedPhysClassJobs$" [header]="'Ranged Phys'"></comfy-class-job-list>
-              </mat-grid-tile>
-            </mat-grid-list>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
           </mat-tab>
           <mat-tab label="Two">
             <h1>Some more tab content</h1>
