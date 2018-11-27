@@ -19,7 +19,8 @@ import {
   MatProgressBarModule,
   MatAutocompleteModule,
   MatGridListModule,
-  MatDividerModule
+  MatDividerModule,
+  MatTabsModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing';
@@ -27,9 +28,10 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterComponent } from './character/character.component';
 import { ClassJobComponent } from './character/class-job/class-job.component';
+import { ClassJobListComponent } from './character/class-job-list/class-job-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent, CharacterComponent, ClassJobComponent],
+  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent, CharacterComponent, ClassJobComponent, ClassJobListComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -46,6 +48,7 @@ import { ClassJobComponent } from './character/class-job/class-job.component';
     MatAutocompleteModule,
     MatGridListModule,
     MatDividerModule,
+    MatTabsModule,
     XivapiClientModule.forRoot('cd1e255e760b445799d4a581'),
     BrowserAnimationsModule
   ],
