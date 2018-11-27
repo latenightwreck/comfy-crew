@@ -31,7 +31,15 @@ import { ClassJobComponent } from './character/class-job/class-job.component';
 import { ClassJobListComponent } from './character/class-job-list/class-job-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SearchBarComponent, SideNavComponent, CharacterComponent, ClassJobComponent, ClassJobListComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    SearchBarComponent,
+    SideNavComponent,
+    CharacterComponent,
+    ClassJobComponent,
+    ClassJobListComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
