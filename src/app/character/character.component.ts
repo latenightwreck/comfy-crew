@@ -9,7 +9,7 @@ import { ClassJobData } from './class-job/class-job-data.model';
 @Component({
   selector: 'comfy-character',
   templateUrl: './character.component.html',
-  styleUrls: ['./character.component.css']
+  styleUrls: ['./character.component.scss']
 })
 export class CharacterComponent implements OnInit {
   JOB_ID = {
