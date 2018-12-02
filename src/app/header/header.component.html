@@ -12,11 +12,15 @@
           [routerLink]="['']">Home</a>
       </li>
       <li
-        class="nav-item"
-        routerLinkActive="router-link-active active">
-        <a
-          class="nav-link"
-          [routerLink]="['/character', 432]">Not Home</a>
+        class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Search
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="['/chracter']"  >Character</a>
+            <a class="dropdown-item" >Another action</a>
+            <a class="dropdown-item" >Something else here</a>
+          </div>
       </li>
     </ul>
   </div>
