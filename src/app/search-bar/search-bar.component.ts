@@ -24,19 +24,7 @@ export class SearchBarComponent implements OnInit {
     this.characterSearchForm = fb.group({
       characterSearchInput: null
     });
-
-    this.characterSearchForm.get('characterSearchInput').valueChanges
-      .pipe(
-        debounceTime(300),
-        tap(() => this.isLoading = true),
-        switchMap(value => characterService.searchCharacters(value)
-          .pipe(
-            finalize(() => this.isLoading = false)
-          )
-        )
-      )
-      .subscribe(characters => this.response = characters.Results);
-    }
+  }
 
   ngOnInit() {
   }

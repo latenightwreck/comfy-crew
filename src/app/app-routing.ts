@@ -5,7 +5,8 @@ import { CharacterComponent } from './character/character.component';
 
 
 const routes: Routes = [
-  {path: '', component: SearchBarComponent, pathMatch: 'full' },
+  {path: 'chracter', component: SearchBarComponent, pathMatch: 'full' },
+
   {path: 'character/:id', component: CharacterComponent }
 ];
 
