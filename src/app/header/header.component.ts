@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'comfy-header',
@@ -7,6 +6,5 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Input() sideNav: MatSidenav;
 
 }

@@ -1,9 +1,9 @@
-mat-sidenav-container {
-  height: calc(100vh - 64px);
+body > .container {
+  padding-top: 60px;
 }
 
-@media (max-width: 600px) {
-    mat-sidenav-container {
-        height: calc(100vh - 56px)
-    }
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
 }

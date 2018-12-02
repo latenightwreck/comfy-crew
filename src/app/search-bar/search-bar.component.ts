@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CharacterSearchResultRow } from '@xivapi/angular-client';
 import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { CharacterService } from '../character/character.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -42,7 +41,7 @@ export class SearchBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelectionChanged(event: MatAutocompleteSelectedEvent) {
-    this.router.navigate(['character', event.option.value]);
+  onSelectionChanged(event: Event) {
+    this.router.navigate(['character', event]);
   }
 }
