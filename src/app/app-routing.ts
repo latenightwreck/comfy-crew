@@ -1,11 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 import { NgModule } from '@angular/core';
 import { CharacterComponent } from './character/character.component';
+import { CharacterSearchComponent } from './search/character-search/character-search/character-search.component';
 
 
 const routes: Routes = [
-  {path: 'chracter', component: SearchBarComponent, pathMatch: 'full' },
+  {path: 'chracter', component: CharacterSearchComponent, pathMatch: 'full' },
 
   {path: 'character/:id', component: CharacterComponent }
 ];
