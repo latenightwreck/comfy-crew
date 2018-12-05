@@ -5,7 +5,7 @@ import { CharacterSearchComponent } from './search/character-search/character-se
 
 
 const routes: Routes = [
-  {path: 'chracter', component: CharacterSearchComponent, pathMatch: 'full' },
+  {path: 'character', component: CharacterSearchComponent, pathMatch: 'full' },
 
   {path: 'character/:id', component: CharacterComponent }
 ];
