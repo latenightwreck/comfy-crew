@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-light bg-mint-green">
     <a class="navbar-brand" href="#">Comfy Crew</a>
 
   <div class="collape navbar-collapse">
@@ -12,14 +12,13 @@
           [routerLink]="['']">Home</a>
       </li>
       <li
-        class="nav-item dropdown">
+        class="nav-item dropdown"
+        routerLinkActive="router-link-active active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Search
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" [routerLink]="['/chracter']"  >Character</a>
-            <a class="dropdown-item" >Another action</a>
-            <a class="dropdown-item" >Something else here</a>
+            <a class="dropdown-item" [routerLink]="['/character']"  >Character</a>
           </div>
       </li>
     </ul>
