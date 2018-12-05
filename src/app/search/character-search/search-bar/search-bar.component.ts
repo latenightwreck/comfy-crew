@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CharacterSearchResultRow } from '@xivapi/angular-client';
-import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
+import { Component, OnInit, Output } from '@angular/core';
+import { CharacterSearchResultRow, CharacterSearchResult } from '@xivapi/angular-client';
+import { switchMap, debounceTime, tap, finalize, map } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from 'src/app/character/character.service';
+import { ResourceLoader } from '@angular/compiler';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'comfy-search-bar',
@@ -94,25 +96,26 @@ export class SearchBarComponent implements OnInit {
 
   characterSearchForm: FormGroup;
   isLoading = false;
+  characterList$: Observable<CharacterSearchResult>;
 
-  constructor(public characterService: CharacterService,
-    fb: FormBuilder, private router: Router) {
+  constructor(fb: FormBuilder, characterService: CharacterService) {
+    this.characterSearchForm = fb.group({
+      charNameInput: null,
+      charServerInput: 'Sargatanas'
+    });
 
-
-      this.characterSearchForm = fb.group({
-        charNameInput: null,
-        charServerInput: 'Sargatanas'
-      });
+    this.characterList$ = this.characterSearchForm.valueChanges.pipe(
+      debounceTime(300),
+      tap(() => (this.isLoading = true)),
+      switchMap(obj =>
+        characterService
+          .searchCharacters(obj.charNameInput, obj.charNameInput)
+          .pipe(finalize(() => (this.isLoading = false)))
+      )
+    );
   }
 
   ngOnInit() {}
 
-  onCharacterSearch() {
-    this.isLoading = true;
-
-    const charName = this.characterSearchForm.get('charNameInput').value;
-    const charServer = this.characterSearchForm.get('charServerInput').value;
-
-    this.router.navigate(['/character'], {queryParams: {name: charName, server: charServer}});
-  }
+  onCharacterSearch() {}
 }
