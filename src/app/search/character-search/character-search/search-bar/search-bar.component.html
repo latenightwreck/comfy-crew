@@ -1,0 +1,33 @@
+<div class="card my-2 shadow">
+  <div class="card-body" fxLayoutAlign="center">
+    <form class="form-inline" [formGroup]="characterSearchForm">
+      <div class="input-group">
+        <input
+          class="form-control my-1"
+          placeholder="Character Name"
+          type="text"
+          formControlName="charNameInput"
+        />
+        <select
+          class="custom-select my-1 mr-sm-2"
+          formControlName="charServerInput"
+        >
+          <optgroup
+            *ngFor="let dataCenter of (SERVER_LIST | keyvalue)"
+            label="{{ dataCenter.key }}"
+          >
+            <option
+              *ngFor="let server of dataCenter.value"
+              value="{{ server }}"
+            >
+              {{ server }}
+            </option>
+          </optgroup>
+        </select>
+      </div>
+      <button class="btn btn-outline-purple" (click)="onCharacterSearch()">
+        Search
+      </button>
+    </form>
+  </div>
+</div>
