@@ -3,7 +3,12 @@ body > .container {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
+  margin-block-start: 100px;
+}
+
+.container {
+  margin-block-end: 100px;
 }

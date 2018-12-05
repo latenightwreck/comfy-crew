@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CharacterComponent } from './character/character.component';
-import { CharacterSearchComponent } from './search/character-search/character-search/character-search.component';
+import { CharacterSearchComponent } from './search/character-search/character-search.component';
 
 
 const routes: Routes = [

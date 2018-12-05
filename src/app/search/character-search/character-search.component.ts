@@ -33,3 +33,4 @@ export class CharacterSearchComponent implements OnInit {
 
   ngOnInit() {}
 }
+

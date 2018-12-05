@@ -12,8 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterComponent } from './character/character.component';
 import { ClassJobComponent } from './character/class-job/class-job.component';
 import { ClassJobListComponent } from './character/class-job-list/class-job-list.component';
-import { CharacterSearchComponent } from './search/character-search/character-search/character-search.component';
-import { SearchBarComponent } from './search/character-search/character-search/search-bar/search-bar.component';
+import { CharacterSearchComponent } from './search/character-search/character-search.component';
+import { SearchBarComponent } from './search/character-search/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
