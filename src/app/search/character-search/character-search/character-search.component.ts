@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterService } from 'src/app/character/character.service';
+import { ActivatedRoute } from '@angular/router';
+import { tap, switchMap, finalize, map, shareReplay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { CharacterSearchResult } from '@xivapi/angular-client';
 
 @Component({
   selector: 'comfy-character-search',
@@ -6,89 +11,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./character-search.component.scss']
 })
 export class CharacterSearchComponent implements OnInit {
-  objectKeys = Object.keys;
-  readonly SERVER_LIST: Object = {
-    Aether: [
-      'Adamantoise',
-      'Balmung',
-      'Cactuar',
-      'Coeurl',
-      'Faerie',
-      'Gilgamesh',
-      'Goblin',
-      'Jenova',
-      'Mateus',
-      'Midgardsormr',
-      'Sargatanas',
-      'Siren',
-      'Zalera'
-    ],
-    Chaos: [
-      'Cerberus',
-      'Lich',
-      'Louisoix',
-      'Moogle',
-      'Odin',
-      'Omega',
-      'Phoenix',
-      'Ragnarok',
-      'Shiva',
-      'Zodiark'
-    ],
-    Elemental: [
-      'Aegis',
-      'Atomos',
-      'Carbuncle',
-      'Garuda',
-      'Gungnir',
-      'Kujata',
-      'Ramuh',
-      'Tonberry',
-      'Typhon',
-      'Unicorn'
-    ],
-    Gaia: [
-      'Alexander',
-      'Bahamut',
-      'Durandal',
-      'Fenrir',
-      'Ifrit',
-      'Ridill',
-      'Tiamat',
-      'Ultima',
-      'Valefor',
-      'Yojimbo',
-      'Zeromus'
-    ],
-    Mana: [
-      'Anima',
-      'Asura',
-      'Belias',
-      'Chocobo',
-      'Hades',
-      'Ixion',
-      'Mandragora',
-      'Masamune',
-      'Pandaemonium',
-      'Shinryu',
-      'Titan'
-    ],
-    Primal: [
-      'Behemoth',
-      'Brynhildr',
-      'Diabolos',
-      'Excalibur',
-      'Exodus',
-      'Famfrit',
-      'Hyperion',
-      'Lamia',
-      'Leviathan',
-      'Malboro',
-      'Ultros'
-    ]
-  };
 
-  constructor() {}
+  isLoading = false;
+
+  characterList$: Observable<CharacterSearchResult>;
+
+  constructor(private route: ActivatedRoute, private characterService: CharacterService) {
+    this.characterList$ = this.route.queryParamMap.pipe(
+      map(params => {
+        return {
+          name: params.get('name'),
+          server: params.get('server')
+        };
+      }),
+      switchMap(obj =>
+        this.characterService.searchCharacters(obj.name, obj.server).pipe(shareReplay(1))
+      )
+    );
+  }
+
 
   ngOnInit() {}
 }

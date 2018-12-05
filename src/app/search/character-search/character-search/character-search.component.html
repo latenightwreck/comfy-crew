@@ -1,15 +1,12 @@
-<form class="form-inline">
-  <label class="my-1 mr-2" for="characterNameInput">Character Name:</label>
-  <input class="form-control my-1 mr-sm-2" id="characterNameInput" type="text" />
-  <label class="my-1 mr-2" for="serverInput">Server:</label>
-  <select class="custom-select my-1 mr-sm-2" id="serverInput">
-    <optgroup
-      *ngFor="let dataCenter of (SERVER_LIST | keyvalue)"
-      label="{{ dataCenter.key }}"
-    >
-      <option *ngFor="let server of dataCenter.value" value="{{ server }}">
-        {{server}}
-      </option>
-    </optgroup>
-  </select>
-</form>
+<comfy-search-bar></comfy-search-bar>
+
+<div *ngIf="characterList$ | async as characterList; else elseTemplate">
+  <div *ngFor="let character of characterList.Results">
+      {{ character | json }}
+  </div>
+</div>
+<ng-template #elseTemplate>
+  Loading
+</ng-template>
+
+
