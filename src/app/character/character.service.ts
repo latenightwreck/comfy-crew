@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class CharacterService {
   constructor(private xivapi: XivapiService) {}
 
-  searchCharacters(value: string): Observable<CharacterSearchResult> {
-    return this.xivapi.searchCharacter(value, 'sargatanas');
+  searchCharacters(charName: string, serverName: string): Observable<CharacterSearchResult> {
+    return this.xivapi.searchCharacter(charName, serverName);
   }
 
   getCharacter(id: number): Observable<Character> {
