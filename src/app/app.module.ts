@@ -4,16 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { XivapiClientModule } from '@xivapi/angular-client';
 import { HeaderComponent } from './header/header.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 
 import {FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing';
+import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterComponent } from './character/character.component';
 import { ClassJobComponent } from './character/class-job/class-job.component';
 import { ClassJobListComponent } from './character/class-job-list/class-job-list.component';
 import { CharacterSearchComponent } from './search/character-search/character-search/character-search.component';
+import { SearchBarComponent } from './search/character-search/character-search/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
