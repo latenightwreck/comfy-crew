@@ -1,3 +1,19 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
+
+
+.bg-mint-green {
+  background-color: #69F0AE;
+}
+
+.btn-outline-purple {
+  color: purple;
+  background-color: transparent;
+  background-image: none;
+  border-color: purple;
+  &:hover {
+    color: white;
+    background-color: purple;
+  }
+}
