@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { CharacterSearchResultRow, CharacterSearchResult } from '@xivapi/angular-client';
-import { switchMap, debounceTime, tap, finalize, map } from 'rxjs/operators';
+import { switchMap, debounceTime, tap, finalize, map, filter } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from 'src/app/character/character.service';
@@ -96,7 +96,7 @@ export class SearchBarComponent implements OnInit {
 
   characterSearchForm: FormGroup;
   isLoading = false;
-  characterList$: Observable<CharacterSearchResult>;
+  characterList: CharacterSearchResultRow[];
 
   constructor(fb: FormBuilder, characterService: CharacterService) {
     this.characterSearchForm = fb.group({
@@ -104,15 +104,23 @@ export class SearchBarComponent implements OnInit {
       charServerInput: 'Sargatanas'
     });
 
-    this.characterList$ = this.characterSearchForm.valueChanges.pipe(
+    this.characterSearchForm.valueChanges.pipe(
       debounceTime(300),
+      filter((query) => query.charNameInput.length > 3),
       tap(() => (this.isLoading = true)),
       switchMap(obj =>
         characterService
-          .searchCharacters(obj.charNameInput, obj.charNameInput)
-          .pipe(finalize(() => (this.isLoading = false)))
+          .searchCharacters(obj.charNameInput, obj.charServerInput)
+          .pipe(
+            map(result => {
+              return result;
+            }),
+            finalize(() => (this.isLoading = false))
+            )
       )
-    );
+    ).subscribe(result => {
+        this.characterList = result.Results;
+    });
   }
 
   ngOnInit() {}

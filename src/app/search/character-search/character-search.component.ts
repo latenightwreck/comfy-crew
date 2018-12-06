@@ -16,7 +16,7 @@ export class CharacterSearchComponent implements OnInit {
   isLoading = false;
 
   @ViewChild(SearchBarComponent)
-  characterList$: Observable<CharacterSearchResult>;
+  searchBarComponent: SearchBarComponent;
 
   constructor() {}
 

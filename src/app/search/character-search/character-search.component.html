@@ -1,7 +1,7 @@
 <comfy-search-bar></comfy-search-bar>
 
-<div *ngIf="characterList$ | async as characterList; else elseTemplate">
-  <div *ngFor="let character of characterList.Results">
+<div *ngIf="!searchBarComponent.isLoading; else elseTemplate">
+  <div *ngFor="let character of searchBarComponent.characterList">
       {{ character | json }}
   </div>
 </div>
