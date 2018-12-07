@@ -28,3 +28,20 @@
     </form>
   </div>
 </div>
+
+<div *ngIf="isLoading">
+  <div class="progress">
+    <div
+      class="progress-bar progress-bar-striped progress-bar-animated"
+      role="progressbar"
+      style="width: 100%"
+      aria-valuenow="100"
+      aria-valuemin="100"
+      aria-valuemax="100"
+    ></div>
+  </div>
+</div>
+
+<div *ngFor="let character of charResultList">
+  {{ character | json}}
+</div>

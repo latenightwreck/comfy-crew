@@ -1,18 +1,17 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { CharacterSearchResultRow, CharacterSearchResult } from '@xivapi/angular-client';
-import { switchMap, debounceTime, tap, finalize, map, filter } from 'rxjs/operators';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CharacterService } from 'src/app/character/character.service';
-import { ResourceLoader } from '@angular/compiler';
+import { ActivatedRoute } from '@angular/router';
+import { tap, switchMap, finalize, map, shareReplay, debounceTime, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { CharacterSearchResult, CharacterSearchResultRow } from '@xivapi/angular-client';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'comfy-search-bar',
-  templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss']
+  selector: 'comfy-character-search',
+  templateUrl: './character-search.component.html',
+  styleUrls: ['./character-search.component.scss']
 })
-export class SearchBarComponent implements OnInit {
+export class CharacterSearchComponent implements OnInit {
   readonly SERVER_LIST: Object = {
     Aether: [
       'Adamantoise',
@@ -94,11 +93,11 @@ export class SearchBarComponent implements OnInit {
     ]
   };
 
-  characterSearchForm: FormGroup;
   isLoading = false;
-  characterList: CharacterSearchResultRow[];
+  characterSearchForm: FormGroup;
+  public charResultList: CharacterSearchResultRow[] = [];
 
-  constructor(fb: FormBuilder, characterService: CharacterService) {
+  constructor(fb: FormBuilder, charService: CharacterService) {
     this.characterSearchForm = fb.group({
       charNameInput: null,
       charServerInput: 'Sargatanas'
@@ -106,24 +105,16 @@ export class SearchBarComponent implements OnInit {
 
     this.characterSearchForm.valueChanges.pipe(
       debounceTime(300),
+      tap(() => (this.charResultList.length = 0)),
       filter((query) => query.charNameInput.length > 3),
       tap(() => (this.isLoading = true)),
-      switchMap(obj =>
-        characterService
-          .searchCharacters(obj.charNameInput, obj.charServerInput)
-          .pipe(
-            map(result => {
-              return result;
-            }),
-            finalize(() => (this.isLoading = false))
-            )
+      switchMap(obj => charService.searchCharacters(obj.charNameInput, obj.charServerInput).pipe(
+          finalize(() => this.isLoading = false)
+        )
       )
-    ).subscribe(result => {
-        this.characterList = result.Results;
-    });
+    ).subscribe(characters => this.charResultList = characters.Results);
   }
 
   ngOnInit() {}
-
-  onCharacterSearch() {}
 }
+

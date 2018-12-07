@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { XivapiClientModule } from '@xivapi/angular-client';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './core/header/header.component';
 
 import {FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,14 +12,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterComponent } from './character/character.component';
 import { ClassJobComponent } from './character/class-job/class-job.component';
 import { ClassJobListComponent } from './character/class-job-list/class-job-list.component';
-import { CharacterSearchComponent } from './search/character-search/character-search.component';
-import { SearchBarComponent } from './search/character-search/search-bar/search-bar.component';
+import { CharacterSearchComponent } from './pages/search/character-search/character-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchBarComponent,
     CharacterComponent,
     ClassJobComponent,
     ClassJobListComponent,
