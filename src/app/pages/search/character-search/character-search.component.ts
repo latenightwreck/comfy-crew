@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CharacterService } from 'src/app/character/character.service';
+import { CharacterService } from 'src/app/core/services/character.service';
 import { ActivatedRoute } from '@angular/router';
 import { tap, switchMap, finalize, map, shareReplay, debounceTime, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';

@@ -1,7 +1,7 @@
 import { Character } from './character.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { CharacterService } from './character.service';
+import { CharacterService } from '../core/services/character.service';
 import { Observable } from 'rxjs';
 import { map, switchMap, shareReplay } from 'rxjs/operators';
 import { ClassJobData } from './class-job/class-job-data.model';

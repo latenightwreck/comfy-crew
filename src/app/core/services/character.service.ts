@@ -1,8 +1,9 @@
 import { map } from 'rxjs/operators';
-import { Character } from './character.model';
+
 import { Injectable } from '@angular/core';
 import { XivapiService, CharacterSearchResult } from '@xivapi/angular-client';
 import { Observable } from 'rxjs';
+import { Character } from 'src/app/character/character.model';
 
 @Injectable({
   providedIn: 'root'
