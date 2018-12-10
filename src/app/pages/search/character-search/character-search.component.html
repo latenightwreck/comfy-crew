@@ -42,6 +42,10 @@
   </div>
 </div>
 
-<div *ngFor="let character of charResultList">
-  {{ character | json}}
+<div class="list-group">
+  <comfy-character-list-item
+    *ngFor="let character of charResultList"
+    [characterListItem]="character"
+    class="list-group-item bg-light">
+  </comfy-character-list-item>
 </div>

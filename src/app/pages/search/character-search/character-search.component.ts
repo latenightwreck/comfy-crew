@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CharacterService } from 'src/app/core/services/character.service';
-import { ActivatedRoute } from '@angular/router';
-import { tap, switchMap, finalize, map, shareReplay, debounceTime, filter } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { CharacterSearchResult, CharacterSearchResultRow } from '@xivapi/angular-client';
+import { tap, switchMap, finalize, debounceTime, filter } from 'rxjs/operators';
+import { CharacterSearchResultRow } from '@xivapi/angular-client';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CharacterListItem } from 'src/app/shared/models/character-list-item.model';
 
 @Component({
   selector: 'comfy-character-search',
@@ -95,7 +94,7 @@ export class CharacterSearchComponent implements OnInit {
 
   isLoading = false;
   characterSearchForm: FormGroup;
-  public charResultList: CharacterSearchResultRow[] = [];
+  public charResultList: CharacterListItem[] = [];
 
   constructor(fb: FormBuilder, charService: CharacterService) {
     this.characterSearchForm = fb.group({
@@ -112,7 +111,7 @@ export class CharacterSearchComponent implements OnInit {
           finalize(() => this.isLoading = false)
         )
       )
-    ).subscribe(characters => this.charResultList = characters.Results);
+    ).subscribe(characters => this.charResultList = characters);
   }
 
   ngOnInit() {}

@@ -13,6 +13,7 @@ import { CharacterComponent } from './character/character.component';
 import { ClassJobComponent } from './character/class-job/class-job.component';
 import { ClassJobListComponent } from './character/class-job-list/class-job-list.component';
 import { CharacterSearchComponent } from './pages/search/character-search/character-search.component';
+import { CharacterListItemComponent } from './pages/search/character-search/components/character-list-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CharacterSearchComponent } from './pages/search/character-search/charac
     CharacterComponent,
     ClassJobComponent,
     ClassJobListComponent,
-    CharacterSearchComponent
+    CharacterSearchComponent,
+    CharacterListItemComponent
   ],
   imports: [
     BrowserModule,

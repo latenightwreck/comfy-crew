@@ -3,7 +3,8 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { XivapiService, CharacterSearchResult } from '@xivapi/angular-client';
 import { Observable } from 'rxjs';
-import { Character } from 'src/app/character/character.model';
+import { Character } from 'src/app/shared/models/character.model';
+import { CharacterListItem } from 'src/app/shared/models/character-list-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,16 @@ import { Character } from 'src/app/character/character.model';
 export class CharacterService {
   constructor(private xivapi: XivapiService) {}
 
-  searchCharacters(charName: string, serverName: string): Observable<CharacterSearchResult> {
-    return this.xivapi.searchCharacter(charName, serverName);
+  searchCharacters(charName: string, serverName: string): Observable<CharacterListItem[]> {
+    return this.xivapi.searchCharacter(charName, serverName).pipe(
+      map(searchResult => {
+        const list: CharacterListItem[] = [];
+        for (const result of searchResult.Results) {
+          list.push(new CharacterListItem(result));
+        }
+        return list;
+      })
+    );
   }
 
   getCharacter(id: number): Observable<Character> {

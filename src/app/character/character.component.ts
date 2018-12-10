@@ -1,4 +1,4 @@
-import { Character } from './character.model';
+import { Character } from '../shared/models/character.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CharacterService } from '../core/services/character.service';
