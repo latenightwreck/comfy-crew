@@ -3,17 +3,17 @@
 @import '~bootstrap/scss/bootstrap-grid';
 
 
-.bg-mint-green {
-  background-color: #bfd293;
+.bg-fc-green {
+  background-color: #81ae16;
 }
 
 .btn-outline-purple {
-  color: purple;
+  color: #aa6be7;
   background-color: transparent;
   background-image: none;
-  border-color: purple;
+  border-color: #aa6be7;
   &:hover {
     color: white;
-    background-color: purple;
+    background-color: #aa6be7;
   }
 }
