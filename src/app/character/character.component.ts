@@ -13,11 +13,11 @@ import { ClassJobData } from './class-job/class-job-data.model';
 })
 export class CharacterComponent implements OnInit {
   JOB_ID = {
-    tanks: ['119', '321', '3232'],
-    healers: ['624', '2628', '3333'],
-    melee: ['2930', '220', '3434', '422'],
-    physicalRanged: ['523', '3131'],
-    magicRanged: ['3535', '2627', '725']
+    tanks: [19, 21, 32],
+    healers: [24, 28, 33],
+    melee: [30, 20, 34, 22],
+    physicalRanged: [23, 31],
+    magicRanged: [35, 27, 25]
   };
 
   character$: Observable<Character>;
@@ -25,7 +25,7 @@ export class CharacterComponent implements OnInit {
   healerClassJobs$: Observable<ClassJobData[]>;
   meleeClassJobs$: Observable<ClassJobData[]>;
   physicalRangedClassJobs$: Observable<ClassJobData[]>;
-  magicPhysClassJobs$: Observable<ClassJobData[]>;
+  magicClassJobs$: Observable<ClassJobData[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,7 +42,7 @@ export class CharacterComponent implements OnInit {
     this.healerClassJobs$ = this.filterClassJobByType('healers');
     this.meleeClassJobs$ = this.filterClassJobByType('melee');
     this.physicalRangedClassJobs$ = this.filterClassJobByType('physicalRanged');
-    this.magicPhysClassJobs$ = this.filterClassJobByType('magicRanged');
+    this.magicClassJobs$ = this.filterClassJobByType('magicRanged');
   }
 
   ngOnInit() {}
@@ -51,8 +51,8 @@ export class CharacterComponent implements OnInit {
     return this.character$.pipe(
       map(character => {
         return character.classJobs
-          .filter(classJob => {
-            if (this.JOB_ID[classType].includes(classJob.classJobId)) {
+        .filter(classJob => {
+            if (this.JOB_ID[classType].includes(classJob.jobId)) {
               return classJob;
             }
           })
