@@ -1,0 +1,12 @@
+<div *ngFor="let magic of (magicClassJobs$ | async)">
+  {{ magic.level }}
+  <div class="progress">
+    <div
+      class="progress-bar bg-fc-green"
+      role="progressbar"
+      [style.width]="(magic.expLevel / magic.expLevelMax)*100 + '%'"
+      attr.aria-valuenow="({{ magic.expLevel }}"
+      attr.aria-valuemax="{{ magic.expLevelMax }}"
+    ></div>
+  </div>
+</div>
