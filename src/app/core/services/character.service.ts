@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { XivapiService, CharacterSearchResult } from '@xivapi/angular-client';
+import { XivapiService } from '@xivapi/angular-client';
 import { Observable } from 'rxjs';
 import { Character } from 'src/app/shared/models/character.model';
 import { CharacterListItem } from 'src/app/shared/models/character-list-item.model';
@@ -12,7 +12,10 @@ import { CharacterListItem } from 'src/app/shared/models/character-list-item.mod
 export class CharacterService {
   constructor(private xivapi: XivapiService) {}
 
-  searchCharacters(charName: string, serverName: string): Observable<CharacterListItem[]> {
+  searchCharacters(
+    charName: string,
+    serverName: string
+  ): Observable<CharacterListItem[]> {
     return this.xivapi.searchCharacter(charName, serverName).pipe(
       map(searchResult => {
         const list: CharacterListItem[] = [];
@@ -25,10 +28,9 @@ export class CharacterService {
   }
 
   getCharacter(id: number): Observable<Character> {
-    const options = { columns: [
-      'Character.ClassJobs',
-      'Character.Portrait'
-    ]};
+    const options = {
+      columns: ['Character.ClassJobs', 'Character.Portrait']
+    };
     return this.xivapi.getCharacter(id, options).pipe(
       map(charResponse => {
         return new Character(charResponse);

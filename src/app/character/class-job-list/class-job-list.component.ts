@@ -16,5 +16,4 @@ export class ClassJobListComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
