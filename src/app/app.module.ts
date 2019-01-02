@@ -14,6 +14,7 @@ import { ClassJobComponent } from './character/class-job/class-job.component';
 import { ClassJobListComponent } from './character/class-job-list/class-job-list.component';
 import { CharacterSearchComponent } from './pages/search/character-search/character-search.component';
 import { CharacterListItemComponent } from './pages/search/character-search/components/character-list-item.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CharacterListItemComponent } from './pages/search/character-search/comp
     ReactiveFormsModule,
     AppRoutingModule,
     XivapiClientModule.forRoot('cd1e255e760b445799d4a581'),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
