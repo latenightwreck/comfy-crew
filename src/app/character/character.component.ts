@@ -34,8 +34,9 @@ export class CharacterComponent implements OnInit {
     this.character$ = this.route.paramMap.pipe(
       map(params => +params.get('id')),
       switchMap(id =>
-        this.characterService.getCharacter(id).pipe(shareReplay(1))
-      )
+        this.characterService.getCharacter(id)
+      ),
+      shareReplay(1)
     );
 
     this.tankClassJobs$ = this.filterClassJobByType('tanks');
