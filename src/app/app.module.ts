@@ -32,7 +32,7 @@ import { CommonModule } from '@angular/common';
     FlexLayoutModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    XivapiClientModule.forRoot('cd1e255e760b445799d4a581'),
+    XivapiClientModule.forRoot(),
     BrowserAnimationsModule,
     CommonModule
   ],
