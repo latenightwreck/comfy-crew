@@ -15,6 +15,9 @@ import { ClassJobListComponent } from './character/class-job-list/class-job-list
 import { CharacterSearchComponent } from './pages/search/character-search/character-search.component';
 import { CharacterListItemComponent } from './pages/search/character-search/components/character-list-item.component';
 import { CommonModule } from '@angular/common';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { CommonModule } from '@angular/common';
     ClassJobComponent,
     ClassJobListComponent,
     CharacterSearchComponent,
-    CharacterListItemComponent
+    CharacterListItemComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     XivapiClientModule.forRoot(),
     BrowserAnimationsModule,
-    CommonModule
+    CommonModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

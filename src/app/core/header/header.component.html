@@ -19,11 +19,16 @@
         routerLinkActive="router-link-active active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Search
-          </a>
+        </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" [routerLink]="['/character']"  >Character</a>
           </div>
-      </li>
+        </li>
+        <li
+          class="nav-item"
+          routerLinkActive="router-link-active active">
+          <a class="nav-link" [routerLink]="['/calendar']" >Calendar</a>
+        </li>
     </ul>
   </div>
 </nav>
