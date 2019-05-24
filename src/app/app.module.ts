@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
     XivapiClientModule.forRoot(),
     BrowserAnimationsModule,
     CommonModule,
+    FlatpickrModule.forRoot(),
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
