@@ -10,17 +10,27 @@
   <thead>
     <tr>
       <th scope="col">Title</th>
-      <!-- <th scope="col">Primary Color</th> -->
-      <!-- <th scope="col">Secondary Color</th> -->
+      <th scope="col">Primary Color</th>
+      <th scope="col">Secondary Color</th>
       <th scope="col">Start Time</th>
-      <!-- <th scope="col">End Time</th> -->
+      <th scope="col">End Time</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let event of events">
       <td>{{ event.title }}</td>
-      <!-- <td>{{ event.color.primary }}</td> -->
-      <!-- <td>{{ event.color.secondary }}</td> -->
+      <td>
+          <input
+          type="color"
+          [(ngModel)]="event.color.primary"
+        />
+      </td>
+      <td>
+        <input
+          type="color"
+          [(ngModel)]="event.color.secondary"
+        />
+      </td>
       <td>
         <input
           class="form-control"
@@ -35,7 +45,20 @@
           placeholder="Not set"
         />
       </td>
-      <!-- <td>{{ event.end }}</td> -->
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          mwlFlatpickr
+          [(ngModel)]="event.end"
+          [altInput]="true"
+          [convertModelValue]="true"
+          [enableTime]="true"
+          dateFormat="Y-m-dTH:i"
+          altFormat="F j, Y H:i"
+          placeholder="Not set"
+        />
+      </td>
     </tr>
   </tbody>
 </table>
