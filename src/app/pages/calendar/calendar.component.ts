@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarView, CalendarEvent } from 'angular-calendar';
-import { startOfDay } from 'date-fns';
+import { startOfDay, isSameDay, isSameMonth } from 'date-fns';
 
 const colors: any = {
   red: {
@@ -22,11 +22,10 @@ const colors: any = {
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
-
-
 export class CalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
+  activeDayIsOpen = true;
 
   events: CalendarEvent[] = [
     {
@@ -36,9 +35,21 @@ export class CalendarComponent implements OnInit {
     }
   ];
 
-  constructor() { }
-
-  ngOnInit() {
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      this.viewDate = date;
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+    }
   }
 
+  constructor() {}
+
+  ngOnInit() {}
 }
