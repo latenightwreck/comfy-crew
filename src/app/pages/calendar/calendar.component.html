@@ -26,8 +26,8 @@
   </div>
 </div>
 
-<div *ngIf="events$ | async; else loading; let events">
-  <div class="row text-center">
+<div *ngIf="events$ | async; else loading; let events" >
+  <div class="row text-center mt-2">
     <div class="col-md-4">
       <div class="btn-group">
         <div
@@ -79,60 +79,62 @@
     >
     </mwl-calendar-month-view>
   </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Primary Color</th>
-        <th scope="col">Secondary Color</th>
-        <th scope="col">Start Time</th>
-        <th scope="col">End Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let event of events">
-        <td>{{ event.title }}</td>
-        <td>
-          <input type="color" [(ngModel)]="event.color" />
-        </td>
-        <td>
-          <input type="color" [(ngModel)]="event.color" />
-        </td>
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            mwlFlatpickr
-            [(ngModel)]="event.start"
-            [altInput]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            dateFormat="Y-m-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder="Not set"
-          />
-        </td>
-        <td>
-          <input
-            class="form-control"
-            type="text"
-            mwlFlatpickr
-            [(ngModel)]="event.end"
-            [altInput]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            dateFormat="Y-m-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder="Not set"
-          />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card my-2 shadow p-2">
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Primary Color</th>
+          <th scope="col">Secondary Color</th>
+          <th scope="col">Start Time</th>
+          <th scope="col">End Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.title }}</td>
+          <td>
+            <input type="color" [(ngModel)]="event.color" />
+          </td>
+          <td>
+            <input type="color" [(ngModel)]="event.color" />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [(ngModel)]="event.start"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [(ngModel)]="event.end"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
+<!--
 <ul>
   <li *ngFor="let event of events$ | async">
     <pre>{{ event | json }}</pre>
   </li>
-</ul>
+</ul> -->
