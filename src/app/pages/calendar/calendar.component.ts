@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 export class CalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
-  activeDayIsOpen = true;
+  activeDayIsOpen = false;
   events$: Observable<CalendarEvent[]>;
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -35,7 +35,7 @@ export class CalendarComponent implements OnInit {
   }
 
   constructor(db: AngularFirestore) {
-    this.events$ = db.collection('/events').snapshotChanges().pipe(
+    this.events$ = db.collection('/events', ref => ref.orderBy('start')).snapshotChanges().pipe(
       map(events => events.map(e => {
         const data = e.payload.doc.data();
         let end = null;
