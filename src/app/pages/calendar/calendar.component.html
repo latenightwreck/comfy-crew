@@ -14,10 +14,51 @@
         </h3>
       </div>
       <div class="modal-body">
-
+        <form [formGroup]="addEventForm">
+          <div class="form-group">
+            <label for="titleInput">Title</label>
+            <input
+              type="text"
+              name="title"
+              formControlName="titleInput"
+              class="form-control"
+              placeholder="Enter Title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="startInput">Start Time</label>
+            <input
+              formControlName="startInput"
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [altInput]="true"
+              [convertModelValue]="false"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </div>
+          <div class="form-group">
+            <label for="endInput">End Time</label>
+            <input
+              formControlName="endInput"
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Not set"
+            />
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="addEvent()">Save changes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
@@ -26,7 +67,7 @@
   </div>
 </div>
 
-<div *ngIf="events$ | async; else loading; let events" >
+<div *ngIf="events$ | async; else loading; let events">
   <div class="row text-center mt-2">
     <div class="col-md-4">
       <div class="btn-group">
@@ -80,7 +121,7 @@
     </mwl-calendar-month-view>
   </div>
   <div class="card my-2 shadow p-2">
-    <table class="table table-striped" >
+    <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">Title</th>
