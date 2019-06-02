@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarView, CalendarEvent } from 'angular-calendar';
-import { startOfDay, isSameDay, isSameMonth, addHours } from 'date-fns';
+import { isSameDay, isSameMonth, addHours } from 'date-fns';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { map } from 'rxjs/operators';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'comfy-calendar',
@@ -17,7 +15,6 @@ export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
   activeDayIsOpen = false;
   events$: Observable<CalendarEvent[]>;
-  addEventForm: FormGroup;
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -37,16 +34,13 @@ export class CalendarComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
-  constructor(db: AngularFirestore, fb: FormBuilder) {
-    this.addEventForm = fb.group({
-      titleInput: null,
-      startInput: addHours(new Date(), 1),
-      endInput: addHours(new Date(), 2)
-
-    });
-
-    this.events$ = db.collection('/events', ref => ref.orderBy('start')).snapshotChanges().pipe(
-      map(events => events.map(e => {
+  constructor(db: AngularFirestore) {
+    this.events$ = db.collection('/events', ref =>
+      ref
+      .where('end', '>=', new Date())
+      .limit(10))
+      .snapshotChanges().pipe(
+        map(events => events.map(e => {
         const data = e.payload.doc.data();
         let end = null;
 
@@ -68,6 +62,6 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {}
 
   async addEvent() {
-    console.log(this.addEventForm.getRawValue());
+    console.log('Added Event');
   }
 }
