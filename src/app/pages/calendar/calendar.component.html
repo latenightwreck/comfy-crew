@@ -5,69 +5,10 @@
   </div>
 </ng-template>
 
-<div class="modal fade" id="addEventModal" role="dialog" tabindex="-1">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">
-          Add Event
-        </h3>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="addEventForm">
-          <div class="form-group">
-            <label for="titleInput">Title</label>
-            <input
-              type="text"
-              name="title"
-              formControlName="titleInput"
-              class="form-control"
-              placeholder="Enter Title"
-            />
-          </div>
-          <div class="form-group">
-            <label for="startInput">Start Time</label>
-            <input
-              formControlName="startInput"
-              class="form-control"
-              type="text"
-              mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="false"
-              [enableTime]="true"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
-              placeholder="Not set"
-            />
-          </div>
-          <div class="form-group">
-            <label for="endInput">End Time</label>
-            <input
-              formControlName="endInput"
-              class="form-control"
-              type="text"
-              mwlFlatpickr
-              [altInput]="true"
-              [convertModelValue]="true"
-              [enableTime]="true"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
-              placeholder="Not set"
-            />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="addEvent()">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div *ngIf="events$ | async; else loading; let events">
+  <div class="card mt-2 p-2">
+
+
   <div class="row text-center mt-2">
     <div class="col-md-4">
       <div class="btn-group">
@@ -101,15 +42,6 @@
     <div class="col-md-4">
       <h3>{{ viewDate | calendarDate: view + 'ViewTitle':'en' }}</h3>
     </div>
-    <div class="col-md-4">
-      <button
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#addEventModal"
-      >
-        Add Event
-      </button>
-    </div>
   </div>
   <div class="class-month-view">
     <mwl-calendar-month-view
@@ -120,23 +52,26 @@
     >
     </mwl-calendar-month-view>
   </div>
-  <div class="card my-2 shadow p-2">
-    <table class="table table-striped">
+  </div>
+  <div class="card my-2 p-2">
+    <div class="row">
+      <div class="col-sm" fxLayoutAlign="end end">
+        <button type="button" class="btn btn-primary" (click)="addEvent()">Add Event</button>
+      </div>
+    </div>
+    <table class="table table-striped mt-2">
       <thead>
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Primary Color</th>
-          <th scope="col">Secondary Color</th>
           <th scope="col">Start Time</th>
           <th scope="col">End Time</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let event of events">
           <td>{{ event.title }}</td>
-          <td>
-            <input type="color" [(ngModel)]="event.color" />
-          </td>
           <td>
             <input type="color" [(ngModel)]="event.color" />
           </td>
@@ -167,6 +102,12 @@
               altFormat="F j, Y H:i"
               placeholder="Not set"
             />
+          </td>
+          <td>
+            <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary" (click)="addEvent()">Save changes</button>
+            <button type="button" class="btn btn-danger" (click)="addEvent()">Discard</button>
+            </div>
           </td>
         </tr>
       </tbody>
