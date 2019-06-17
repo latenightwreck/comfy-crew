@@ -6,6 +6,9 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { map } from 'rxjs/operators';
 import { trigger, transition, animate } from '@angular/animations';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import * as moment from 'moment'
+
+declare var $: any;
 
 @Component({
   selector: 'comfy-calendar',
@@ -82,6 +85,21 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  async addEvent() {
+    const newEvent = {
+      title: this.addEventForm.value.titleInput,
+      start: moment(this.addEventForm.value.startInput).toDate(),
+      end: moment(this.addEventForm.value.endInput).toDate()
+    } as CalendarEvent;
+    await this.db.collection('/events').add(
+      newEvent
+    );
+
+    $('#addEventModal').modal('hide');
+    this.addEventForm.reset({startInput: addHours(new Date(), 1),
+      endInput: addHours(new Date(), 2)});
   }
 
   async saveEvent() {

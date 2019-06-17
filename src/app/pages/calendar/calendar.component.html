@@ -19,31 +19,29 @@
             />
           </div>
           <div class="form-group">
-              <div class="input-group date" data-target-input="nearest" NgTempusdominusBootstrap>
-                  <input
-                    class="form-control"
-                    formControlName="startInput"
-                    [options]="options"
-                    NgTempusdominusBootstrapInput
-                    type="text"
-                  />
-                  <div class="input-group-append" NgTempusdominusBootstrapToggle id="startInputSelector">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-              </div>
+            <label for="startInput">Start Time</label>
+            <input
+              class="form-control"
+              formControlName="startInput"
+              [options]="options"
+              NgTempusdominusBootstrapInput
+              type="text"
+            />
           </div>
           <div class="form-group">
             <label for="endInput">End Time</label>
             <input
-              formControlName="endInput"
               class="form-control"
+              formControlName="endInput"
+              [options]="options"
+              NgTempusdominusBootstrapInput
               type="text"
             />
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" (click)="addEvent()">Save changes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
         </button>
@@ -188,9 +186,3 @@
     </table>
   </div>
 </div>
-<!--
-<ul>
-  <li *ngFor="let event of events$ | async">
-    <pre>{{ event | json }}</pre>
-  </li>
-</ul> -->
