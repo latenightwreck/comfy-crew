@@ -81,7 +81,6 @@ export class CalendarComponent implements OnInit {
         } as CalendarEvent;
       }))
     );
-
   }
 
   ngOnInit() {
@@ -103,7 +102,7 @@ export class CalendarComponent implements OnInit {
   }
 
   async updateEvent(event: CalendarEvent) {
-    this.db.collection('/events').doc(event.id.toString()).update({
+    await this.db.collection('/events').doc(event.id.toString()).update({
       title: event.title,
       start: moment(event.start).toDate(),
       end: moment(event.end).toDate()
