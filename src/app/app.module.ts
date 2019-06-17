@@ -18,7 +18,6 @@ import { CommonModule } from '@angular/common';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './pages/calendar/calendar.component';
-import { FlatpickrModule } from 'angularx-flatpickr';
 import { environment } from '../environments/environment';
 import { NgTempusdominusBootstrapModule } from 'ngx-tempusdominus-bootstrap';
 
@@ -45,7 +44,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     XivapiClientModule.forRoot(),
     BrowserAnimationsModule,
     CommonModule,
-    FlatpickrModule.forRoot(),
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
