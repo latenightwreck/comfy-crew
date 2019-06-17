@@ -6,7 +6,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { map } from 'rxjs/operators';
 import { trigger, transition, animate } from '@angular/animations';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import * as moment from 'moment'
+import * as moment from 'moment';
 
 declare var $: any;
 
@@ -102,10 +102,15 @@ export class CalendarComponent implements OnInit {
       endInput: addHours(new Date(), 2)});
   }
 
-  async saveEvent() {
-    // TODO validate data exists
-    // await this.db.collection('/events').add(
-    //   this.newEvent
-    // );
+  async updateEvent(event: CalendarEvent) {
+    this.db.collection('/events').doc(event.id.toString()).update({
+      title: event.title,
+      start: moment(event.start).toDate(),
+      end: moment(event.end).toDate()
+    });
+  }
+
+  async deleteEvent(event: CalendarEvent) {
+    await this.db.collection('/events').doc(event.id.toString()).delete();
   }
 }

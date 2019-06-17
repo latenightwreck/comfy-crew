@@ -117,7 +117,6 @@
       <thead>
         <tr>
           <th scope="col">Title</th>
-          <th scope="col">Primary Color</th>
           <th scope="col">Start Time</th>
           <th scope="col">End Time</th>
           <th scope="col"></th>
@@ -125,9 +124,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let event of events">
-          <td>{{ event.title }}</td>
           <td>
-            <input type="color" [(ngModel)]="event.color" />
+            <input type="text" [(ngModel)]="event.title" />
           </td>
           <td>
             <div
@@ -174,11 +172,11 @@
               <button
                 type="button"
                 class="btn btn-primary"
-                (click)="saveEvent()"
+                (click)="updateEvent(event)"
               >
                 Save changes
               </button>
-              <button type="button" class="btn btn-danger">Discard</button>
+              <button type="button" class="btn btn-danger" (click)="deleteEvent(event)">Discard</button>
             </div>
           </td>
         </tr>
