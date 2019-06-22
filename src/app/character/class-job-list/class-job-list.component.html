@@ -6,10 +6,10 @@
         class="progress-bar bg-fc-purple"
         role="progressbar"
         [style.width]="classJob.levelProgress + '%'"
-        attr.aria-valuenow="({{ classJob.expLevel }}"
+        attr.aria-valuenow="{{ classJob.expLevel }}"
         attr.aria-valuemax="{{ classJob.expLevelMax }}"
       >
-        {{classJob.expLevel}}/{{classJob.expLevelMax}}
+        {{classJob.expLevel | number}}/{{classJob.expLevelMax | number}}
       </div>
     </div>
   </div>
