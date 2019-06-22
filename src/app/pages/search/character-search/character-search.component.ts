@@ -12,34 +12,35 @@ import { CharacterListItem } from 'src/app/shared/models/character-list-item.mod
 })
 export class CharacterSearchComponent implements OnInit {
   readonly SERVER_LIST: Object = {
-    Aether: [
+    'Aether': [
       'Adamantoise',
-      'Balmung',
       'Cactuar',
-      'Coeurl',
       'Faerie',
       'Gilgamesh',
-      'Goblin',
       'Jenova',
-      'Mateus',
       'Midgardsormr',
       'Sargatanas',
-      'Siren',
-      'Zalera'
+      'Siren'
     ],
-    Chaos: [
+    'Chaos': [
       'Cerberus',
-      'Lich',
       'Louisoix',
       'Moogle',
-      'Odin',
       'Omega',
-      'Phoenix',
       'Ragnarok',
-      'Shiva',
-      'Zodiark'
+      'Spriggan'
     ],
-    Elemental: [
+    'Crystal': [
+      'Balmung',
+      'Brynhildr',
+      'Coeurl',
+      'Diabolos',
+      'Goblin',
+      'Malboro',
+      'Mateus',
+      'Zalera'
+    ],
+    'Elemental': [
       'Aegis',
       'Atomos',
       'Carbuncle',
@@ -51,7 +52,7 @@ export class CharacterSearchComponent implements OnInit {
       'Typhon',
       'Unicorn'
     ],
-    Gaia: [
+    'Gaia': [
       'Alexander',
       'Bahamut',
       'Durandal',
@@ -64,7 +65,15 @@ export class CharacterSearchComponent implements OnInit {
       'Yojimbo',
       'Zeromus'
     ],
-    Mana: [
+    'Light': [
+      'Lich',
+      'Odin',
+      'Phoenix',
+      'Shiva',
+      'Zodiark',
+      'Twintania'
+    ],
+    'Mana': [
       'Anima',
       'Asura',
       'Belias',
@@ -77,17 +86,14 @@ export class CharacterSearchComponent implements OnInit {
       'Shinryu',
       'Titan'
     ],
-    Primal: [
+    'Primal': [
       'Behemoth',
-      'Brynhildr',
-      'Diabolos',
       'Excalibur',
       'Exodus',
       'Famfrit',
       'Hyperion',
       'Lamia',
       'Leviathan',
-      'Malboro',
       'Ultros'
     ]
   };
