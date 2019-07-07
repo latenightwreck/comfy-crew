@@ -10,6 +10,7 @@ import { CharacterListItem } from 'src/app/shared/models/character-list-item.mod
   templateUrl: './character-search.component.html',
   styleUrls: ['./character-search.component.scss']
 })
+
 export class CharacterSearchComponent implements OnInit {
   readonly SERVER_LIST: Object = {
     'Aether': [
