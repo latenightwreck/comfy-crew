@@ -1,5 +1,5 @@
 import { CharacterResponse, ClassJob } from '@xivapi/angular-client';
-import { ClassJobData } from '../../character/class-job/class-job-data.model';
+import { ClassJobData } from '../../pages/character/class-job/class-job-data.model';
 export class Character {
 
   public portrait: string;
