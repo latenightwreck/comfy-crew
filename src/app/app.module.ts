@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CharacterComponent } from './pages/character/character.component';
-import { ClassJobComponent } from './pages/character/class-job/class-job.component';
 import { ClassJobListComponent } from './pages/character/class-job-list/class-job-list.component';
 import { CharacterSearchComponent } from './pages/search/character/character-search.component';
 import { CharacterListItemComponent } from './pages/search/character/components/character-list-item.component';
@@ -30,7 +29,6 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     AppComponent,
     HeaderComponent,
     CharacterComponent,
-    ClassJobComponent,
     ClassJobListComponent,
     CharacterSearchComponent,
     CharacterListItemComponent,

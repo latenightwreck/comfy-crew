@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ClassJobData } from '../class-job/class-job-data.model';
+import { ClassJobData } from '../../../shared/models/class-job-data.model';
 
 @Component({
   selector: 'comfy-class-job-list',

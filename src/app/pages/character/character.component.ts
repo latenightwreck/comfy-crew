@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CharacterService } from '../../core/services/character.service';
 import { Observable } from 'rxjs';
 import { map, switchMap, shareReplay } from 'rxjs/operators';
-import { ClassJobData } from './class-job/class-job-data.model';
+import { ClassJobData } from '../../shared/models/class-job-data.model';
 
 @Component({
   selector: 'comfy-character',
@@ -13,11 +13,11 @@ import { ClassJobData } from './class-job/class-job-data.model';
 })
 export class CharacterComponent implements OnInit {
   JOB_ID = {
-    tanks: [19, 21, 32],
+    tanks: [19, 21, 32, 37],
     healers: [24, 28, 33],
     melee: [30, 20, 34, 22],
-    physicalRanged: [23, 31],
-    magicRanged: [35, 27, 25]
+    physicalRanged: [23, 31, 38],
+    magicRanged: [35, 27, 25, 36]
   };
 
   character$: Observable<Character>;
