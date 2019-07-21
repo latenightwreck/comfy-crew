@@ -23,6 +23,7 @@ import { NgTempusdominusBootstrapModule } from 'ngx-tempusdominus-bootstrap';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     CharacterSearchComponent,
     CharacterListItemComponent,
     CalendarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

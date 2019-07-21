@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CharacterListItem } from 'src/app/shared/models/character-list-item.model';
+import { CharacterListItem } from 'apps/comfy-crew/src/app/shared/models/character-list-item.model';
 
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterService } from 'src/app/core/services/character.service';
+import { CharacterService } from 'apps/comfy-crew/src/app/core/services/character.service';
 import { tap, switchMap, finalize, debounceTime, filter } from 'rxjs/operators';
 import { CharacterSearchResultRow } from '@xivapi/angular-client';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CharacterListItem } from 'src/app/shared/models/character-list-item.model';
+import { CharacterListItem } from 'apps/comfy-crew/src/app/shared/models/character-list-item.model';
 
 @Component({
   selector: 'comfy-character-search',

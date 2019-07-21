@@ -23,6 +23,8 @@
     "@angular/platform-browser": "^8.0.1",
     "@angular/platform-browser-dynamic": "^8.0.1",
     "@angular/router": "^8.0.1",
+    "@nrwl/angular": "^8.2.0",
+    "@nrwl/workspace": "^8.2.0",
     "@types/jquery": "^3.3.29",
     "@xivapi/angular-client": "^1.2.4",
     "angular-calendar": "^0.27.11",
