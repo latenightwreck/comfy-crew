@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { XivapiService } from '@xivapi/angular-client';
 import { Observable } from 'rxjs';
-import { Character } from 'apps/comfy-crew/src/app/shared/models/character.model'
+import { Character } from 'apps/comfy-crew/src/app/shared/models/character.model';
 import { CharacterListItem } from 'apps/comfy-crew/src/app/shared/models/character-list-item.model';
 
 @Injectable({
