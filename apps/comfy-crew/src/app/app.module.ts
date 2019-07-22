@@ -24,6 +24,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HomeComponent } from './pages/home/home.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,

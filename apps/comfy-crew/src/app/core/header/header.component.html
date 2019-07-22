@@ -30,6 +30,9 @@
           <a class="nav-link" [routerLink]="['/calendar']" >Calendar</a>
         </li>
     </ul>
-    <a class="btn btn-purple">Sign in with Discord</a>
-  </div>
+    <span *ngIf="isLoggedIn; else logInBtn">{{userName}}</span>
+    <ng-template #logInBtn>
+      <button  class="btn btn-purple" (click)="onLogIn()">Sign in with Discord</button>
+    </ng-template>
+   </div>
 </nav>

@@ -59,7 +59,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "comfy-crew:build"
+            "browserTarget": "comfy-crew:build",
+            "proxyConfig": "apps/comfy-crew//proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -106,9 +107,7 @@
               "apps/comfy-crew/src/tsconfig.app.json",
               "apps/comfy-crew/src/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -133,9 +132,169 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "comfy-crew-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api/tsconfig.app.json",
+              "apps/api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api-again-api-again": {
+      "root": "apps/api-again/api-again",
+      "sourceRoot": "apps/api-again/api-again/src",
+      "projectType": "application",
+      "prefix": "api-again-api-again",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api-again/api-again",
+            "main": "apps/api-again/api-again/src/main.ts",
+            "tsConfig": "apps/api-again/api-again/tsconfig.app.json",
+            "assets": ["apps/api-again/api-again/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api-again/api-again/src/environments/environment.ts",
+                  "with": "apps/api-again/api-again/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api-again-api-again:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api-again/api-again/tsconfig.app.json",
+              "apps/api-again/api-again/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/api-again/api-again/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api-again/api-again/jest.config.js",
+            "tsConfig": "apps/api-again/api-again/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api-again": {
+      "root": "apps/api-again",
+      "sourceRoot": "apps/api-again/src",
+      "projectType": "application",
+      "prefix": "api-again",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api-again",
+            "main": "apps/api-again/src/main.ts",
+            "tsConfig": "apps/api-again/tsconfig.app.json",
+            "assets": ["apps/api-again/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api-again/src/environments/environment.ts",
+                  "with": "apps/api-again/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api-again:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/api-again/tsconfig.app.json",
+              "apps/api-again/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/api-again/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api-again/jest.config.js",
+            "tsConfig": "apps/api-again/tsconfig.spec.json"
           }
         }
       }
@@ -146,5 +305,8 @@
     "schematics/angular:component": {
       "styleext": "scss"
     }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/express"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "/comfy-api/*": {
+    "target": "http://localhost:3333",
+    "secure": false,
+    "pathRewrite": {
+      "^/comfy-api": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
