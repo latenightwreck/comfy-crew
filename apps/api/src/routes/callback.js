@@ -24,7 +24,6 @@ router.get('/', catchAsync(async (req, res) => {
       },
     });
   const json = await token_response.json();
-  console.log(json);
   const access_token = json.access_token;
 
   let user = await fetch('https://discordapp.com/api/users/@me',
@@ -36,8 +35,8 @@ router.get('/', catchAsync(async (req, res) => {
   })
 
   user = await user.json();
-  console.log(user);
   res.send(user);
+  res.redirect('localhost')
 
 }));
 
