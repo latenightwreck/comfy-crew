@@ -37,7 +37,7 @@
     "firebase": "^6.3.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ngx-tempusdominus-bootstrap": "^1.0.1",
     "node-fetch": "^2.6.0",
     "popper.js": "^1.15.0",
